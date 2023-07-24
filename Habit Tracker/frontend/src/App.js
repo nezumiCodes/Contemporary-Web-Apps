@@ -1,6 +1,8 @@
 import './styles/App.css';
+import { ThemeProvider } from 'styled-components';
+import theme from './config/theme.js';
 import DaysCompleted from './components/DaysCompleted';
-
+import Header from './components/Header';
 
 const checkins = [
   {
@@ -56,7 +58,12 @@ const checkins = [
 function App() {
   return (
     <div>
-      <DaysCompleted days={checkins.length} checkins={checkins} />
+      <ThemeProvider theme={theme}>
+        <Header />
+        <DaysCompleted days={checkins.length} checkins={checkins}>
+          {" "}
+        </DaysCompleted>
+      </ThemeProvider>
     </div>
   );
 }
