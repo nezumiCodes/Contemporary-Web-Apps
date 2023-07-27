@@ -13,7 +13,34 @@ const theme = {
             5: "rgba(98, 2, 238, 0.05)"
         }
 
-    }
+    },
+    typography: {
+        fontFamily: "Quicksand",
+        h1: {
+          fontSize: "42px"
+        },
+        h2: {
+            fontSize: "32px"
+        },
+    
+        h3: {
+            fontSize: "24px"
+        },
+    
+        h4: {
+            fontSize: "24px"
+        }, 
+    
+        h6: {
+          fontSize: "14px",
+          fontWeight: "bold"
+        },
+    
+        em: {
+          fontSize: "11px",
+        }
+    
+      }
 }
 
 export default theme;
