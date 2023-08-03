@@ -1,8 +1,17 @@
 import './styles/App.css';
+import {useEffect, useState} from 'react';
+import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
+
 import { ThemeProvider } from 'styled-components';
 import theme from './config/theme.js';
 import DaysCompleted from './components/DaysCompleted';
 import Header from './components/Header';
+
+import CheckIn from './views/CheckIn';
+import Dash from './views/Dash';
+import Login from './views/Login';
+import Profile from './views/Profile';
+import GlobalStyles from './config/globalStyles';
 
 const checkins = [
   {
@@ -56,13 +65,36 @@ const checkins = [
 
 
 function App() {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  // const location = useLocation();
+
+  const handleClick = () => {
+    setMenuOpen(!menuOpen);
+  }
+
+  // When loading any page set the state of the menu as closed
+  // useEffect(() => {
+  //   setMenuOpen(false);
+  // }, [location]);
+
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Header />
-        <DaysCompleted days={checkins.length} checkins={checkins}>
-          {" "}
-        </DaysCompleted>
+        <GlobalStyles />
+        <div>
+          <BrowserRouter>
+            <Routes>
+            {/* {location.pathname !== '/login' &&  (
+              <Header onClick={handleClick} open={menuOpen} />
+            )} */}
+              <Route exact path='/' element={<Dash checkins={checkins}/>} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/checkin' element={<CheckIn />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
       </ThemeProvider>
     </div>
   );
