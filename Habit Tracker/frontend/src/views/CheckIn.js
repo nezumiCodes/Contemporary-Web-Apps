@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Tile from '../components/Tile';
 import Label from '../components/Label';
+import Button from '../components/Button';
+import drinkIcon from '../assets/drink-icon.svg';
+import foodIcon from '../assets/food-icon.svg';
 
 function CheckIn() {
   const StyledTile = styled(Tile)`
@@ -36,6 +39,8 @@ function CheckIn() {
       background-color: ${({theme}) => theme.color.purple};
     }
   `;
+
+  const StyledFoodDrinksArea = styled.div``;
 
   return (
     <StyledTile>
@@ -80,6 +85,36 @@ function CheckIn() {
             <input type="radio" name="diet" /> No 
           </span>{" "}
         </StyledCheckin>
+
+        <StyledFoodDrinksArea>
+            <StyledLabel>Drinks</StyledLabel>
+            <StyledLabel>Food</StyledLabel>
+            <div>
+              <StyledIcon src={drinkIcon} />
+              <StyledSelect>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </StyledSelect>
+            </div>
+            <div>
+              <StyledIcon src={foodIcon} />
+              <StyledSelect>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </StyledSelect>
+            </div>
+        </StyledFoodDrinksArea>
+
+        <Button text="CHECKIN" />
+
       </StyledForm>
     </StyledTile>
   )
