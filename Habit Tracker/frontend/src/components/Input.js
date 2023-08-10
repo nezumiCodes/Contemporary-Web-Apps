@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledInput = styled.input`
     width: 100%;
     height: 44px;
-    border: 1px solid ${([theme]) => theme.colors.grey};
+    border: 1px solid ${([theme]) => theme.color.grey};
     border-radius: 4px;
     margin-bottom: 2%;
 `;

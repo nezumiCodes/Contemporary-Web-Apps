@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import facebook from '../assets/facebook.png';
 import google from '../assets/google.png';
@@ -7,7 +6,7 @@ import Button from './Button';
 import Input from './Input';
 import Label from './Label';
 
-function LoginForm(props) {
+function LoginForm() {
 
     const StyledIconArea = styled.div`
         display: flex;
@@ -21,7 +20,7 @@ function LoginForm(props) {
 
     const StyledHeading = styled.h2`
         text-align: center;
-        color: ${([theme]) => theme.colors.purple};
+        color: ${([theme]) => theme.color.purple};
     `;
 
   return (

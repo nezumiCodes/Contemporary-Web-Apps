@@ -20,7 +20,7 @@ export default function Menu() {
         justify-content: center;
         align-items: center;
         margin-bottom: 10%;
-        background: ${({theme, active}) => active ? theme.colors.darkShade[25] : ""}
+        background: ${({theme, active}) => active ? theme.color.darkShade[25] : ""}
     `;
 
     return(

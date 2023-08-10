@@ -29,18 +29,49 @@ function CheckIn() {
   const StyledLabel = styled(Label)`
     text-align: left;
     margin-top: 5%;
+    text-transform: uppercase;
   `;
 
   const StyledCheckin = styled.p`
     display: flex; 
-    justify-content: space-around;
+    gap: 20%;
     margin-top: 5%;
-    input:checked {
-      background-color: ${({theme}) => theme.color.purple};
+    color: rgb(76, 77, 76, 0.8); 
+    
+    input[type="radio"]:checked {
+      color: ${({theme}) => theme.color.grey} !important; 
+      background-color: ${({theme}) => theme.color.purple} !important;
     }
   `;
 
-  const StyledFoodDrinksArea = styled.div``;
+  const StyledFoodDrinksArea = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    text-transform: uppercase;
+  `;
+
+  const StyledIcon = styled.img`
+    display: relative;
+    position: absolute;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  `;
+
+  const StyledSelect = styled.select`
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-left: 30%;
+    background-color: white;
+    color: ${({theme}) => theme.color.darkShade[50]};
+    text-indent: 25%;
+    font-size: 14px;
+    width: 135px;
+    height: 45px;
+    border: 2px solid ${({theme}) => theme.color.grey};
+    border-radius: 3px;
+  `;
 
   return (
     <StyledTile>
@@ -49,40 +80,40 @@ function CheckIn() {
         <StyledLabel>Did you exercise for at least 20 mins?</StyledLabel>
         <StyledCheckin>
           <span>
-            <input type="radio" name="exercise" /> Yes 
+            <input type="radio" name="exercise" value="Yes"/> Yes 
           </span>{" "}
           <span>
-            <input type="radio" name="exercise" /> No 
+            <input type="radio" name="exercise" value="No"/> No 
           </span>{" "}
         </StyledCheckin>
 
         <StyledLabel>Did you drink 2 liters of water?</StyledLabel>
         <StyledCheckin>
           <span>
-            <input type="radio" name="water" /> Yes 
+            <input type="radio" name="water" value="Yes"/> Yes 
           </span>{" "}
           <span>
-            <input type="radio" name="water" /> No 
+            <input type="radio" name="water" value="No"/> No 
           </span>{" "}
         </StyledCheckin>
 
         <StyledLabel>Did you eat 5 portions of veg?</StyledLabel>
         <StyledCheckin>
           <span>
-            <input type="radio" name="veg" /> Yes 
+            <input type="radio" name="veg" value="Yes"/> Yes 
           </span>{" "}
           <span>
-            <input type="radio" name="veg" /> No 
+            <input type="radio" name="veg" value="No"/> No 
           </span>{" "}
         </StyledCheckin>
 
         <StyledLabel>Was your diet perfect?</StyledLabel>
         <StyledCheckin>
           <span>
-            <input type="radio" name="diet" /> Yes 
+            <input type="radio" name="diet" value="Yes"/> Yes 
           </span>{" "}
           <span>
-            <input type="radio" name="diet" /> No 
+            <input type="radio" name="diet" value="No"/> No 
           </span>{" "}
         </StyledCheckin>
 

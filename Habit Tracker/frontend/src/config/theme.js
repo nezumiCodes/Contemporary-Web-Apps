@@ -15,7 +15,7 @@ const theme = {
 
     },
     typography: {
-        fontFamily: "Quicksand",
+        fontFamily: "Montserrat",
         h1: {
           fontSize: "42px"
         },

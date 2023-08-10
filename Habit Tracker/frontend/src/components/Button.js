@@ -8,13 +8,14 @@ function Button(props) {
     const StyledButton = styled.button`
         width: 90%; 
         height: 45px;
-        border-radius: 50%; 
+        border-radius: 25px; 
+        border: none;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
         color: white;
-        background: linear-gradient(180deg, #BC9CFF, 0%, #8BA4F9, 100%);
+        background: linear-gradient(180deg, ${({theme}) => theme.color.purple} 0%, ${({theme}) => theme.color.lightPurple} 100%);
         margin-top: 10%;    
     `;
 

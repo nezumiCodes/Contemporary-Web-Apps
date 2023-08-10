@@ -4,8 +4,7 @@ import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
 import theme from './config/theme.js';
-import DaysCompleted from './components/DaysCompleted';
-import Header from './components/Header';
+// import Header from './components/Header';
 
 import CheckIn from './views/CheckIn';
 import Dash from './views/Dash';

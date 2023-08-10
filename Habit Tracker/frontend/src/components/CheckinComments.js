@@ -15,9 +15,9 @@ function LikeButton(props) {
         align-items: center;
         height: 20px;
         width: 50px;
-        border: 1px solid ${({theme}) => theme.colors.purple};
+        border: 1px solid ${({theme}) => theme.color.purple};
         border-radius: 40%;
-        color: ${({theme}) => theme.colors.purple};
+        color: ${({theme}) => theme.color.purple};
     `;
 
     return(
@@ -51,18 +51,18 @@ function CheckinComments(props) {
         height: 80px;
         border-radius: 5px;
         padding: 5%;
-        background-color: ${({theme}) => theme.colors.grey};
+        background-color: ${({theme}) => theme.color.grey};
     `;
 
     const StyledLine = styled.hr`
         width: 95%;
-        border: 0.6px solid ${({theme}) => theme.colors.grey};
+        border: 0.6px solid ${({theme}) => theme.color.grey};
     `;
 
     const StyledScore = styled.div`
         display: flex;
         flex-direction: column;
-        color: ${({theme}) => theme.colors.purple};
+        color: ${({theme}) => theme.color.purple};
     `;
 
   return (
@@ -74,7 +74,7 @@ function CheckinComments(props) {
             </StyledPhotoArea>
             <StyledCommentArea>
                 <h3>
-                    Joe Appleton <span style={{color: ({theme}) => theme.colors.purple}}> Checked In </span>
+                    Joe Appleton <span style={{color: ({theme}) => theme.color.purple}}> Checked In </span>
                 </h3>
                 <h3>
                     2 hours ago

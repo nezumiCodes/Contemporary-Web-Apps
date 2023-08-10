@@ -17,14 +17,14 @@ export default function Header() {
         cursor: pointer;
         width: 90px;
         hr {
-            border: 1px solid ${({theme}) => theme.colors.darkShade[100]}, 
+            border: 1px solid ${({theme}) => theme.color.darkShade[100]}, 
             width: 15%, 
             margin: 4px 0 0 4px;
         }
     `;
 
     const StyledAvatar = styled.div`
-        color: ${({theme}) => theme.colors.darkShade[25]},
+        color: ${({theme}) => theme.color.darkShade[25]},
         display: flex; 
         align-items: center;
     `;
@@ -47,8 +47,8 @@ export default function Header() {
         justify-content: space-between;
         background: linear-gradient(
             180deg, 
-            ${({theme}) => theme.colors.lightPurple} 0%, 
-            ${({theme}) => theme.colors.purple} 100%, 
+            ${({theme}) => theme.color.lightPurple} 0%, 
+            ${({theme}) => theme.color.purple} 100%, 
         )
     `;
 

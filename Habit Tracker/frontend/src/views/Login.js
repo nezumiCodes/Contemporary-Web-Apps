@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import Tile from '../components/Tile';
 
@@ -34,4 +34,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Login;
