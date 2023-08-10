@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DaysCompleted from '../components/DaysCompleted';
+import CheckinComments from '../components/CheckinComments';
 
 function Dash(props) {
 
@@ -11,6 +12,7 @@ function Dash(props) {
       <DaysCompleted days={7} checkins={checkins}>
         {" "}
       </DaysCompleted>
+      <CheckinComments/>
     </div>
   )
 }
