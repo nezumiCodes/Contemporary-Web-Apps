@@ -5,6 +5,8 @@ import Label from '../components/Label';
 import Button from '../components/Button';
 import drinkIcon from '../assets/drink-icon.svg';
 import foodIcon from '../assets/food-icon.svg';
+import useAuth from "../services/useAuth";
+import useCheckins from '../services/useCheckins';
 
 function CheckIn() {
   const StyledTile = styled(Tile)`
@@ -72,6 +74,27 @@ function CheckIn() {
     border: 2px solid ${({theme}) => theme.color.grey};
     border-radius: 3px;
   `;
+
+  const { user } = useAuth();
+  const { createCheckin } = useCheckins();
+
+  const handleSubmit = async (checkin) => {
+    const ckin = {
+      ...checkin,
+      ...{
+        photo: user.photoURL,
+        userName: user.displayName || user.email,
+        userId: user.uid,
+        time: new Date()
+      }
+    }
+
+    try {
+      await createCheckin(ckin);
+    } catch(err) {
+      console.error(err);
+    }
+  }
 
   return (
     <StyledTile>
@@ -144,7 +167,7 @@ function CheckIn() {
             </div>
         </StyledFoodDrinksArea>
 
-        <Button text="CHECKIN" />
+        <Button text="CHECKIN" onClick={handleSubmit} />
 
       </StyledForm>
     </StyledTile>

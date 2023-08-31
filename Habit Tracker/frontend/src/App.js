@@ -117,20 +117,18 @@ function App() {
             <Routes>
             {/* {location.pathname !== '/login' &&  (
               <Header onClick={handleClick} open={menuOpen} />
-            )} */}
+            )} */
+            }
               <Protected authenticated={isAuthenticated} exact path="/">
                 <Dash checkins={checkins}/>
               </Protected>
-              {/* <Route exact path='/' element={<Dash checkins={checkins}/>} /> */}
               <Route authenticated={isAuthenticated} path='/login' element={<Login />} />
               <Protected authenticated={isAuthenticated} path="/profile">
                 <Profile />
               </Protected>
-              {/* <Route path='/profile' element={<Profile />} /> */}
               <Protected authenticated={isAuthenticated} path="/checkin">
                 <CheckIn />
               </Protected>
-              {/* <Route path='/checkin' element={<CheckIn />} /> */}
             </Routes>
           </BrowserRouter>
         </div>

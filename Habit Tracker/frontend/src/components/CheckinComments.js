@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Tile from './Tile';
 import Histogram from './Histogram';
+import useAuth from '../services/useAuth';
+import useCheckins from '../services/useCheckins';
 
 function LikeButton(props) {
     const StyledDiv = styled.div`
@@ -64,6 +66,39 @@ function CheckinComments(props) {
         flex-direction: column;
         color: ${({theme}) => theme.color.purple};
     `;
+
+
+  const {onClick, checkin, key} = props;  
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+  const { getComments } = useCheckins();
+  const { user } = useAuth();
+
+  const commentListener = (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        onClick(key, comment);
+        setComment("");
+    }
+  }
+
+  const getCommentsData = () => {
+    getComments(key, (comRef) => {
+        const comments = [];
+        if(comRef.metadata.hasPendingWrites) {
+            return;
+        }
+        comRef.forEach((c) => {
+            comments.push({...c.data(), ...{id: c.id}})
+        });
+        setComments(comments);
+    });
+  }
+
+  useEffect(() => {
+    getCommentsData();
+  },[]);
+
 
   return (
     <Tile>
