@@ -1,6 +1,11 @@
+import {initializeApp} from 'firebase/app';
+import firebaseConfig from './config/firebase';
+import useAuth from './services/useAuth';
+import useCheckins from './services/useCheckins';
+
 import './styles/App.css';
 import {useEffect, useState} from 'react';
-import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Redirect, useLocation, useHistory} from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
 import theme from './config/theme.js';
@@ -62,11 +67,37 @@ const checkins = [
   },
 ];
 
+function Protected({authenticated, children, ...rest}) {
+    return (
+      <Route {...rest} 
+              render={
+                ({location}) => authenticated ? (children) 
+                                : (<Redirect to={{
+                                                  pathname: '/login',
+                                                  state: {from: location}
+                                                }}/>)
+      }/>
+    )
+}
+
 
 function App() {
+  initializeApp(firebaseConfig);
+  const {createUser, signInUser, signOutUser, isAuthenticated, user} = useAuth();
+  const [checkins, setCheckins] = useState([]);
+
+  const location = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      history.push(history.location.state.from.pathname);
+      return;
+    }
+    return;
+  }, [isAuthenticated]);
 
   const [menuOpen, setMenuOpen] = useState(false);
-  // const location = useLocation();
 
   const handleClick = () => {
     setMenuOpen(!menuOpen);
@@ -87,10 +118,19 @@ function App() {
             {/* {location.pathname !== '/login' &&  (
               <Header onClick={handleClick} open={menuOpen} />
             )} */}
-              <Route exact path='/' element={<Dash checkins={checkins}/>} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/checkin' element={<CheckIn />} />
+              <Protected authenticated={isAuthenticated} exact path="/">
+                <Dash checkins={checkins}/>
+              </Protected>
+              {/* <Route exact path='/' element={<Dash checkins={checkins}/>} /> */}
+              <Route authenticated={isAuthenticated} path='/login' element={<Login />} />
+              <Protected authenticated={isAuthenticated} path="/profile">
+                <Profile />
+              </Protected>
+              {/* <Route path='/profile' element={<Profile />} /> */}
+              <Protected authenticated={isAuthenticated} path="/checkin">
+                <CheckIn />
+              </Protected>
+              {/* <Route path='/checkin' element={<CheckIn />} /> */}
             </Routes>
           </BrowserRouter>
         </div>
