@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import {Link} from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import Tile from '../components/Tile';
+import useAuth from '../services/useAuth';
 
 function Login() {
 
@@ -20,6 +21,28 @@ function Login() {
     justify-content: center;
   `;
 
+  const { signInUser, signInFacebook, signInGoogle } = useAuth();
+
+  const handleSocialSubmit = async (method) => {
+    try {
+        if(method === 'facebook') {
+            await signInFacebook();
+        } else {
+            await signInGoogle();
+        }
+    } catch (err) {
+        console.log("Error: " + err);
+    }
+  };
+
+  const handleEmailSubmit = async (data) => {
+      try {
+          const {email, password} = data;
+          await signInUser(email, password);
+      } catch (err) {
+          console.log("Error: " + err);
+      }
+  };
 
   return (
     <div>
@@ -27,7 +50,11 @@ function Login() {
         <StyledTile>
           <h2>GET STARTED</h2>
           <h2>JOIN WITH</h2>
-          <LoginForm />
+          <LoginForm 
+            socialSubmit = {handleSocialSubmit}
+            emailSubmit = {handleEmailSubmit}
+          />
+          <Link to='/join'>Not a member? - Join</Link>
         </StyledTile>
       </StyledWrapper>
     </div>
